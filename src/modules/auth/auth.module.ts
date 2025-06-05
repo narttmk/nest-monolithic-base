@@ -8,6 +8,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { RefreshTokenStrategy } from './strategies/refresh-token.strategy';
+import { EmailModule } from 'src/common/modules/mail/mail.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { RefreshTokenStrategy } from './strategies/refresh-token.strategy';
       }),
       inject: [ConfigService],
     }),
+    EmailModule, // Import EmailModule for sending emails
   ],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy, RefreshTokenStrategy],

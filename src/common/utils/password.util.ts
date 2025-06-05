@@ -4,6 +4,6 @@ export const genSalt = () => {
   return bcrypt.genSalt(saltRounds);
 };
 
-export const hashPassword = (password: string, saltKey: string) => {
-  return bcrypt.hash(password, saltKey);
+export const hashString = (rawString: string, saltKey: string) => {
+  return bcrypt.hash(rawString, saltKey);
 };

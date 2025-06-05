@@ -11,10 +11,7 @@ export class UsersController {
 
   @Get('profile')
   async getCurrentUser(@Request() req: ExpressRequest) {
-    // This method would typically return the current user's information
-    // For example, it could return the user from the request context or session
-    // return { message: 'Current user information' };
-    const user = await this.usersService.getUserById(req.user?.id as string); // Adjust based on your JWT payload structure
-    return removeSensitiveUserData(user); // Assuming this utility function removes sensitive data like password
+    const user = await this.usersService.getUserById(req.user?.id as string);
+    return removeSensitiveUserData(user);
   }
 }
