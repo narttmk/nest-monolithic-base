@@ -4,12 +4,13 @@ import { ConfigService } from '@nestjs/config';
 import { WINSTON_MODULE_NEST_PROVIDER, WinstonLogger, WinstonModule } from 'nest-winston';
 import { loggerConfig } from './logger.config';
 import { ValidationPipe } from '@nestjs/common';
+import * as rTracer from 'cls-rtracer';
 
 export async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: WinstonModule.createLogger(loggerConfig),
   });
-
+  app.use(rTracer.expressMiddleware({ useHeader: true }));
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,

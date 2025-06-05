@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post, Request, UseGuards } from '@nestjs/common';
 import { RegisterDto } from './dto/register.dto';
 import { AuthService } from './auth.service';
 import { Request as ExRequest } from 'express';
@@ -18,6 +18,7 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
+  @HttpCode(200)
   login(@Request() req: ExRequest) {
     return this.authService.login(req.user as UserWithoutPassword);
   }
