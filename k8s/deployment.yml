@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nest-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nest-app
+  template:
+    metadata:
+      labels:
+        app: nest-app
+    spec:
+      containers:
+        - name: nest-app
+          image: 192.168.100.179:31757/marusysvina/nest-monolithic-base:latest
+          ports:
+            - containerPort: 3000

@@ -11,12 +11,6 @@ import { join } from 'path';
     MailerModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
-        console.log(configService.get<string>('EMAIL_HOST'));
-        console.log(configService.get<number>('EMAIL_PORT'));
-        console.log(configService.get<string>('EMAIL_USER'));
-        console.log(configService.get<string>('EMAIL_PASS'));
-        console.log(configService.get<string>('EMAIL_FROM'));
-        console.log(configService.get<boolean>('EMAIL_SECURE'));
         return {
           transport: {
             host: configService.get<string>('EMAIL_HOST'),
@@ -24,7 +18,7 @@ import { join } from 'path';
             secure: JSON.parse(configService.get<string>('EMAIL_SECURE') || 'false') as boolean, // true for 465, false for other ports
             auth: {
               user: configService.get<string>('EMAIL_USER'),
-              pass: configService.get<string>('EMAIL_PASS'),
+              pass: configService.get<string>('EMAIL_PASSWORD'),
             },
           },
           defaults: {
