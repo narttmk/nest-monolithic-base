@@ -9,4 +9,10 @@ spec:
     - protocol: TCP
       port: 3000
       targetPort: 3000
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
   type: ClusterIP
